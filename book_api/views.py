@@ -6,6 +6,7 @@ from book_api.serializer import BookSerializer
 
 
 # Create your views here.
+@api_view(['GET'])
 def book_list(request):
     books = Book.objects.all()
     serializer = BookSerializer(books, many=True)
@@ -16,3 +17,12 @@ def book_list(request):
     #         'books': books_python
     #     }
     # )
+
+
+def book_create(request):
+    serializer = BookSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    else:
+        return Response(serializer.errors)
