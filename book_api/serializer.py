@@ -20,9 +20,4 @@ class BookSerializer(serializers.Serializer):
 
         instance.save()
         return instance
-# {
-#    "title": "Harry Potter",
-#    "number_of_pages": 300,
-#    "publish_date": "2021-01-09",
-#    "quantity": 400
-# }
+
