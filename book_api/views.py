@@ -19,6 +19,7 @@ def book_list(request):
     # )
 
 
+@api_view(['POST'])
 def book_create(request):
     serializer = BookSerializer(data=request.data)
     if serializer.is_valid():
