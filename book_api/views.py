@@ -32,7 +32,12 @@ def book_create(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def book(request, pk):
-    book = Book.objects.get(pk=pk)
+    try:
+        book = Book.objects.get(pk=pk)
+    except:
+        return Response({
+            'error': 'Book does not exist'
+        }, status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         serializer = BookSerializer(book)
         return Response(serializer.data)
