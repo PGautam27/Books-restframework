@@ -6,7 +6,7 @@ from django.http import JsonResponse
 # Create your views here.
 def book_list(request):
     books = Book.objects.all()
-    books_python = list(books.value)
+    books_python = list(books.values())
     return JsonResponse(
         {
             'books': books_python
