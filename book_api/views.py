@@ -57,6 +57,7 @@ from rest_framework.views import APIView
 from book_api.serializer import BookSerializer
 from book_api.models import Book
 from rest_framework.response import Response
+from rest_framework import status
 
 
 class BookList(APIView):
@@ -64,3 +65,13 @@ class BookList(APIView):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
+
+
+class BookCreate(APIView):
+    def post(self, request):
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
