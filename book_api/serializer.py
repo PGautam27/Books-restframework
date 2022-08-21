@@ -18,6 +18,7 @@ class BookSerializer(serializers.Serializer):
         instance.completed_reading = data.get('completed_reading', instance.completed_reading)
         instance.reading_platform = data.get('reading_platform', instance.reading_platform)
 
+
         instance.save()
         return instance
 
