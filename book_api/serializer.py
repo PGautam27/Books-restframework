@@ -3,6 +3,7 @@ from book_api.models import Book
 
 
 class BookSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
     title = serializers.CharField()
     author_name = serializers.CharField(max_length=100)
     completed_reading = serializers.BooleanField()
